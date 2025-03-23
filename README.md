@@ -1,5 +1,3 @@
-readme_content = """# VLSI Fault Detection - Machine Learning Model
-
 ## Overview
 This project implements a **Neural Network (MLP)** to detect faults in **VLSI circuits** using binary test patterns. The system:
 - **Trains a classifier model** to detect faults.
