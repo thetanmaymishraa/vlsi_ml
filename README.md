@@ -67,4 +67,4 @@ Each time the model is trained, an **evaluation report** is generated in `result
 with open("README.md", "w") as f:
     f.write(readme_content)
 
-print("\u2705 README.md file has been successfully created!")
+print("README.md file has been successfully created!")
