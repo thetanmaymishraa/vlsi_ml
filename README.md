@@ -1,91 +1,71 @@
-# VLSI Fault Detection Using Machine Learning
+readme_content = """# VLSI Fault Detection - Machine Learning Model
 
-## 📌 Overview
-This project implements a **Machine Learning (ML) model** to detect **stuck-at faults** in digital **VLSI circuits**. The model uses:
-- **Deep Sparse Autoencoder** for feature extraction.
-- **Binary Classifier** for fault detection.
-- **Test patterns** generated from ATPG tools or simulations.
+## \ud83d\udccc Overview
+This project implements a **Neural Network (MLP)** to detect faults in **VLSI circuits** using binary test patterns. The system:
+- **Trains a classifier model** to detect faults.
+- **Tests new input patterns** and saves predictions.
+- **Automatically logs test results and model evaluations.**
 
-## 📂 Folder Structure
+## \ud83d\udcc2 Folder Structure
 ```
 vlsi_ml/
 │── data/                    # Input test patterns & labels
-│   ├── test_patterns.csv    # Test patterns (circuit data)
-│   ├── labels.csv           # Fault labels (0 = No Fault, 1 = Fault)
+│   ├── test_patterns.csv    # Test input patterns
+│   ├── labels.csv           # Corresponding fault labels (0 = No Fault, 1 = Fault)
 │── models/                  # Trained models
-│   ├── autoencoder.h5       # Autoencoder for feature extraction
-│   ├── classifier.h5        # Binary classifier for fault detection
-│── scripts/                 # Training & testing scripts
+│   ├── classifier.h5        # Trained Neural Network model
+│── results/                 # Test results & evaluation reports
+│   ├── test_results.csv     # Stores predictions with timestamps
+│   ├── evaluation_report.txt # Stores model accuracy after training
+│── scripts/                 # Python scripts for training & testing
 │   ├── train_model.py       # Train the model
-│   ├── test_model.py        # Test the trained model
-│── results/                 # Evaluation results
-│   ├── evaluation_report.txt
-│── requirements.txt         # Required Python libraries
+│   ├── test_model.py        # Test the model on new data
 │── README.md                # Project documentation
 ```
 
-## 🔹 1. Install Dependencies
-Run the following command to install the required Python libraries:
+## \ud83d\udd39 1. Install Dependencies
+To install the required Python libraries, run:
 ```bash
-pip install -r requirements.txt
+pip install numpy pandas tensorflow
 ```
 
-## 🔹 2. Prepare Input Data
-You need **two CSV files** inside `data/`:
-
-### `test_patterns.csv` (Circuit Input Data)
-Each row represents a test pattern in binary format:
-```
-1,0,1,1,0,0,1,1,0,1,0,1,0,1,0,0,1,1,0,1
-0,1,0,0,1,1,0,1,1,0,1,0,1,0,1,1,0,0,1,0
-...
-```
-
-### `labels.csv` (Fault Labels)
-Each row corresponds to a fault label (`0` = No Fault, `1` = Fault):
-```
-1
-0
-1
-0
-...
-```
-
-## 🔹 3. Generate Test Patterns
-Test patterns can be generated using:
-1. **ATALANTA ATPG Tool**:
-   ```bash
-   atalanta -t test_patterns.txt circuit.bench
-   ```
-   Convert the output into `test_patterns.csv`.
-2. **Logic Simulators** (Cadence, Synopsys, Xilinx Vivado): Simulate your circuit and save the binary input patterns.
-3. **Manual Entry** (For small circuits).
-
-## 🔹 4. Train the Models
-Run the training script to train the **Autoencoder** and **Binary Classifier**:
+## \ud83d\udd39 2. Train the Model
+To train the neural network model, run:
 ```bash
-cd scripts
-python train_model.py
+python scripts/train_model.py
 ```
-✅ This saves trained models inside `models/`.
+\u2705 This will create and save `classifier.h5` inside `models/`.
+\u2705 An **evaluation report** (`evaluation_report.txt`) will be saved in `results/`, logging model accuracy.
 
-## 🔹 5. Test the Models
-Use the trained models to detect faults in new test patterns:
+## \ud83d\udd39 3. Test the Model on New Data
+To test the trained model on new input patterns, run:
 ```bash
-python test_model.py
+python scripts/test_model.py
 ```
-✅ Predictions will be saved in `results/predictions.csv`.
+\u2705 This will append predictions to `results/test_results.csv` with timestamps.
 
-## 📊 Results
-After training, model accuracy will be saved in `results/evaluation_report.txt`.
+## \ud83d\udd39 4. Test Results Storage
+- All test results are stored in `results/test_results.csv`.
+- Each test run appends new predictions to this file.
+- Results include a timestamp to track when predictions were made.
 
-## 🚀 Next Steps
-- Improve model accuracy with **real circuit data**.
-- Add support for **other fault types** (bridging, delay faults).
-- Integrate with **hardware testing environments**.
+## \ud83d\udd39 5. Model Evaluation Report
+Each time the model is trained, an **evaluation report** is generated in `results/evaluation_report.txt`, containing:
+- Training accuracy
+- Timestamp of training completion
 
----
 
-## 📞 Need Help?
-For any questions, feel free to reach out!
+## \ud83d\ude80 Future Improvements
+- Enhance model accuracy with additional hidden layers.
+- Use real-world VLSI test pattern datasets.
+- Implement visualization tools for better analysis.
+- Deploy the model as a web-based or API service.
 
+\ud83d\udcde **Need Help?** Reach out if you have any questions!
+"""
+
+# Save the README file
+with open("README.md", "w") as f:
+    f.write(readme_content)
+
+print("\u2705 README.md file has been successfully created!")
